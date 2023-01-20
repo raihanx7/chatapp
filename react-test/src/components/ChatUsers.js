@@ -12,7 +12,6 @@ function ChatUsers({socket}) {
         navigate('/');
         sessionStorage.removeItem('name');
         window.location.reload();
-        console.log("hello")
     }
 
     useEffect(() => {
