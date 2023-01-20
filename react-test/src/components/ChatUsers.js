@@ -16,7 +16,7 @@ function ChatUsers({socket}) {
 
     useEffect(() => {
         socket.on('newUserResponse', (data) => setUsers(data));
-    }, [users]);
+    }, [users, socket]);
 
     return(
         <div className="chatUsers">
@@ -27,7 +27,7 @@ function ChatUsers({socket}) {
                 &nbsp;
                 <button className="btn btn-danger" onClick={handleLeave}>Leave</button>
             </div>
-                <p>{users.map(user => <li>{user.name}</li>)}</p>
+                <p className="d-flex">{users.map(user => <div className="d-flex">&nbsp;&nbsp;&nbsp;&nbsp;<li>{user.name}</li></div>)}</p>
         </div>
     )
 }
