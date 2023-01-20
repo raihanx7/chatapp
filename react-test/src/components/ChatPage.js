@@ -7,20 +7,20 @@ import ChatUsers from './ChatUsers';
 function ChatPage({socket}) {
 
     const [messages, setMessages] = useState([]);
-    const lastMsgRef = useRef();
+    const bottomOfChatRef = useRef(null);
 
     useEffect(() => {
         socket.on('messageResponse', (data) => setMessages([...messages, data]));
     }, [socket, messages]);
 
     useEffect(() => {
-        lastMsgRef.current?.scrollIntoView({ behavior: 'smooth' });
+        bottomOfChatRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
     return(
         <div>
             <ChatUsers socket={socket}/>
-            <ChatBody messages={messages} lastMsgRef={lastMsgRef} />
+            <ChatBody messages={messages} bottomOfChatRef={bottomOfChatRef} />
             <br/>
             <ChatSend socket={socket}/>
         </div>

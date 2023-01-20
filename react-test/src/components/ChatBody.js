@@ -1,21 +1,21 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-function ChatBody({messages, lastMsgRef}) {
+function ChatBody({messages, bottomOfChatRef}) {
 
     const [name, setName] = useState();
     const today = new Date();
 
     useEffect(() => {
         setName(sessionStorage.getItem('name'));
-    }, [])
+    }, []);
 
     return(
         <div>
             <h2 className="text-center">Chat room</h2>
             <h5 className="text-center">You are signed in as: {name}</h5>
-            <div className="chat vh-95 overflow-auto">
             <div className="text-center">{today.getDate() + '/' + today.getMonth()+1 + '/' + today.getFullYear()}</div>
+            <div className="chat vh-95 overflow-auto">
                 <div className="card-body h-100 p-2">
                     {messages.map(message =>
                         message.name === name ? (
@@ -33,8 +33,8 @@ function ChatBody({messages, lastMsgRef}) {
                         )
                     )}
                 </div> 
+                <div ref={bottomOfChatRef} />  
             </div>
-            <div ref={lastMsgRef} />  
         </div>
     )
 }
